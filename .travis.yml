@@ -1,0 +1,26 @@
+language: java
+jdk:
+  - openjdk8
+
+#branches: # branch 모든게 다 되야 좋을것 같다.
+#  only:
+#    - master
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.mvn'
+before_script:
+  - chmod +x mvnw
+# clean 후 Build (Build시 자동으로 test 수행)
+script:
+  - ./mvnw clean install -B
+#  - ./gradlew jacocoTestReport
+#
+#after_success:
+#  - bash <(curl -s https://codecov.io/bash)
+
+# CI 실행 완료시 메일로 알람
+notifications:
+  email:
+    recipients:
+      - mgh3326@naver.com.com
