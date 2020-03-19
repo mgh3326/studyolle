@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - openjdk8
+  - openjdk11
 
 #branches: # branch 모든게 다 되야 좋을것 같다.
 #  only:
