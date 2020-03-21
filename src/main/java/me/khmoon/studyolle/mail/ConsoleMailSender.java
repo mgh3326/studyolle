@@ -1,4 +1,4 @@
-package me.khmoon.studyolle;
+package me.khmoon.studyolle.mail;
 
 
 import lombok.extern.slf4j.Slf4j;
