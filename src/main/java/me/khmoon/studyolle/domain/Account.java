@@ -8,16 +8,11 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Getter
-@Setter
-@EqualsAndHashCode(of = "id")
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter @Setter @EqualsAndHashCode(of = "id")
+@Builder @AllArgsConstructor @NoArgsConstructor
 public class Account {
 
-  @Id
-  @GeneratedValue
+  @Id @GeneratedValue
   private Long id;
 
   @Column(unique = true)
@@ -42,6 +37,7 @@ public class Account {
 
   private String location;
 
+  @Lob @Basic(fetch = FetchType.EAGER)
   private String profileImage;
 
   private boolean studyCreatedByEmail;
@@ -63,5 +59,9 @@ public class Account {
   public void completeSignUp() {
     this.emailVerified = true;
     this.joinedAt = LocalDateTime.now();
+  }
+
+  public boolean isValidToken(String token) {
+    return this.emailCheckToken.equals(token);
   }
 }
