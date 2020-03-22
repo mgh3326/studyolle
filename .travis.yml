@@ -9,6 +9,7 @@ cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.mvn'
+    - '$HOME/src/main/resources/static/node_modules'
 before_script:
   - chmod +x mvnw
 # clean 후 Build (Build시 자동으로 test 수행)
