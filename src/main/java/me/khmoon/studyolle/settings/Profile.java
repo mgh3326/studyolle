@@ -1,9 +1,11 @@
 package me.khmoon.studyolle.settings;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import me.khmoon.studyolle.domain.Account;
 
 @Data
+@NoArgsConstructor
 public class Profile {
 
   private String bio;

@@ -3,6 +3,7 @@ package me.khmoon.studyolle.account;
 
 import lombok.RequiredArgsConstructor;
 import me.khmoon.studyolle.domain.Account;
+import me.khmoon.studyolle.settings.Profile;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -82,5 +83,15 @@ public class AccountService implements UserDetailsService {
   public void completeSignUp(Account account) {
     account.completeSignUp();
     login(account);
+  }
+
+  public void updateProfile(Account account, Profile profile) {
+    account.setUrl(profile.getUrl());
+    account.setOccupation(profile.getOccupation());
+    account.setLocation(profile.getLocation());
+    account.setBio(profile.getBio());
+    // TODO 프로필 이미지
+    accountRepository.save(account);
+    // TODO 문제가 하나 더 남았습니다.
   }
 }
