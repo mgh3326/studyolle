@@ -2,9 +2,10 @@ package me.khmoon.studyolle.account;
 
 
 import lombok.RequiredArgsConstructor;
+import me.khmoon.studyolle.account.form.SignUpForm;
 import me.khmoon.studyolle.domain.Account;
-import me.khmoon.studyolle.settings.Notifications;
-import me.khmoon.studyolle.settings.Profile;
+import me.khmoon.studyolle.settings.form.Notifications;
+import me.khmoon.studyolle.settings.form.Profile;
 import org.modelmapper.ModelMapper;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

@@ -4,6 +4,10 @@ import lombok.RequiredArgsConstructor;
 import me.khmoon.studyolle.account.AccountService;
 import me.khmoon.studyolle.account.CurrentUser;
 import me.khmoon.studyolle.domain.Account;
+import me.khmoon.studyolle.settings.form.Notifications;
+import me.khmoon.studyolle.settings.form.PasswordForm;
+import me.khmoon.studyolle.settings.form.Profile;
+import me.khmoon.studyolle.settings.validator.PasswordFormValidator;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +25,11 @@ import javax.validation.Valid;
 public class SettingsController {
 
   static final String SETTINGS_PROFILE_VIEW_NAME = "settings/profile";
-  static final String SETTINGS_PROFILE_URL = "/settings/profile";
+  static final String SETTINGS_PROFILE_URL = "/" + SETTINGS_PROFILE_VIEW_NAME;
   static final String SETTINGS_PASSWORD_VIEW_NAME = "settings/password";
-  static final String SETTINGS_PASSWORD_URL = "/settings/password";
+  static final String SETTINGS_PASSWORD_URL = "/" + SETTINGS_PASSWORD_VIEW_NAME;
   static final String SETTINGS_NOTIFICATIONS_VIEW_NAME = "settings/notifications";
-  static final String SETTINGS_NOTIFICATIONS_URL = "/settings/notifications";
+  static final String SETTINGS_NOTIFICATIONS_URL = "/" + SETTINGS_NOTIFICATIONS_VIEW_NAME;
 
   private final AccountService accountService;
   private final ModelMapper modelMapper;

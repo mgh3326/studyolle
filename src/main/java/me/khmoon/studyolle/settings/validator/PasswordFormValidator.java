@@ -1,5 +1,6 @@
-package me.khmoon.studyolle.settings;
+package me.khmoon.studyolle.settings.validator;
 
+import me.khmoon.studyolle.settings.form.PasswordForm;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

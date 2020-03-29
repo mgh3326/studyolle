@@ -2,7 +2,7 @@ package me.khmoon.studyolle.main;
 
 import me.khmoon.studyolle.account.AccountRepository;
 import me.khmoon.studyolle.account.AccountService;
-import me.khmoon.studyolle.account.SignUpForm;
+import me.khmoon.studyolle.account.form.SignUpForm;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

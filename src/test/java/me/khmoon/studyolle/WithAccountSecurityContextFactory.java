@@ -2,7 +2,7 @@ package me.khmoon.studyolle;
 
 import lombok.RequiredArgsConstructor;
 import me.khmoon.studyolle.account.AccountService;
-import me.khmoon.studyolle.account.SignUpForm;
+import me.khmoon.studyolle.account.form.SignUpForm;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;

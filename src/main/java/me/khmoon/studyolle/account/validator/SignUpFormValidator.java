@@ -1,6 +1,8 @@
-package me.khmoon.studyolle.account;
+package me.khmoon.studyolle.account.validator;
 
 import lombok.RequiredArgsConstructor;
+import me.khmoon.studyolle.account.AccountRepository;
+import me.khmoon.studyolle.account.form.SignUpForm;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
