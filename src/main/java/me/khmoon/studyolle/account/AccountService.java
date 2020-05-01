@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import me.khmoon.studyolle.account.form.SignUpForm;
 import me.khmoon.studyolle.domain.Account;
 import me.khmoon.studyolle.domain.Tag;
+import me.khmoon.studyolle.domain.Zone;
 import me.khmoon.studyolle.settings.form.Notifications;
 import me.khmoon.studyolle.settings.form.Profile;
 import org.modelmapper.ModelMapper;
@@ -130,5 +131,20 @@ public class AccountService implements UserDetailsService {
   public void removeTag(Account account, Tag tag) {
     Optional<Account> byId = accountRepository.findById(account.getId());
     byId.ifPresent(a -> a.getTags().remove(tag));
+  }
+
+  public Set<Zone> getZones(Account account) {
+    Optional<Account> byId = accountRepository.findById(account.getId());
+    return byId.orElseThrow().getZones();
+  }
+
+  public void addZone(Account account, Zone zone) {
+    Optional<Account> byId = accountRepository.findById(account.getId());
+    byId.ifPresent(a -> a.getZones().add(zone));
+  }
+
+  public void removeZone(Account account, Zone zone) {
+    Optional<Account> byId = accountRepository.findById(account.getId());
+    byId.ifPresent(a -> a.getZones().remove(zone));
   }
 }
