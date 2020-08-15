@@ -1,7 +1,8 @@
-package me.khmoon.studyolle.study;
+package me.khmoon.studyolle.study.validator;
 
 
 import lombok.RequiredArgsConstructor;
+import me.khmoon.studyolle.study.StudyRepository;
 import me.khmoon.studyolle.study.form.StudyForm;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
