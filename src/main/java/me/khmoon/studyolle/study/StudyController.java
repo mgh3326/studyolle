@@ -1,13 +1,12 @@
 package me.khmoon.studyolle.study;
 
+import lombok.RequiredArgsConstructor;
 import me.khmoon.studyolle.account.CurrentAccount;
 import me.khmoon.studyolle.domain.Account;
 import me.khmoon.studyolle.domain.Study;
 import me.khmoon.studyolle.study.form.StudyForm;
 import me.khmoon.studyolle.study.validator.StudyFormValidator;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.propertyeditors.URLEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -50,8 +49,9 @@ public class StudyController {
   }
 
   @PostMapping("/new-study")
-  public String newStudySubmit(@CurrentAccount Account account, @Valid StudyForm studyForm, Errors errors) {
+  public String newStudySubmit(@CurrentAccount Account account, @Valid StudyForm studyForm, Errors errors, Model model) {
     if (errors.hasErrors()) {
+      model.addAttribute(account);
       return "study/form";
     }
 
