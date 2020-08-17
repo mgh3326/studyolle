@@ -15,11 +15,16 @@ import java.util.Set;
         @NamedAttributeNode("managers"),
         @NamedAttributeNode("members")})
 @Entity
-@Getter @Setter @EqualsAndHashCode(of = "id")
-@Builder @AllArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Study {
 
-  @Id @GeneratedValue
+  @Id
+  @GeneratedValue
   private Long id;
 
   @ManyToMany
@@ -35,10 +40,12 @@ public class Study {
 
   private String shortDescription;
 
-  @Lob @Basic(fetch = FetchType.EAGER)
+  @Lob
+  @Basic(fetch = FetchType.EAGER)
   private String fullDescription;
 
-  @Lob @Basic(fetch = FetchType.EAGER)
+  @Lob
+  @Basic(fetch = FetchType.EAGER)
   private String image;
 
   @ManyToMany
@@ -82,5 +89,9 @@ public class Study {
 
   public void addMemeber(Account account) {
     this.members.add(account);
+  }
+
+  public String getImage() {
+    return image != null ? image : "/images/default_banner.png";
   }
 }
