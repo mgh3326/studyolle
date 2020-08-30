@@ -7,8 +7,9 @@ import me.khmoon.studyolle.account.AccountService;
 import me.khmoon.studyolle.domain.Account;
 import me.khmoon.studyolle.domain.Tag;
 import me.khmoon.studyolle.domain.Zone;
-import me.khmoon.studyolle.settings.form.TagForm;
+import me.khmoon.studyolle.tag.TagForm;
 import me.khmoon.studyolle.tag.TagRepository;
+import me.khmoon.studyolle.zone.ZoneForm;
 import me.khmoon.studyolle.zone.ZoneRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,8 +27,8 @@ import javax.transaction.Transactional;
 import static me.khmoon.studyolle.settings.SettingsController.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @Transactional
@@ -35,12 +36,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class SettingsControllerTest {
 
-  @Autowired MockMvc mockMvc;
-  @Autowired AccountRepository accountRepository;
-  @Autowired PasswordEncoder passwordEncoder;
-  @Autowired ObjectMapper objectMapper;
-  @Autowired TagRepository tagRepository;
-  @Autowired AccountService accountService;
+  @Autowired
+  MockMvc mockMvc;
+  @Autowired
+  AccountRepository accountRepository;
+  @Autowired
+  PasswordEncoder passwordEncoder;
+  @Autowired
+  ObjectMapper objectMapper;
+  @Autowired
+  TagRepository tagRepository;
+  @Autowired
+  AccountService accountService;
   @Autowired
   ZoneRepository zoneRepository;
 

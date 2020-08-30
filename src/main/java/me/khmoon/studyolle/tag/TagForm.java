@@ -1,4 +1,4 @@
-package me.khmoon.studyolle.settings.form;
+package me.khmoon.studyolle.tag;
 
 import lombok.Data;
 

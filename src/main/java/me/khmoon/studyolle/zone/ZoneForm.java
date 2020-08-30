@@ -1,4 +1,4 @@
-package me.khmoon.studyolle.settings;
+package me.khmoon.studyolle.zone;
 
 import lombok.Data;
 import me.khmoon.studyolle.domain.Zone;

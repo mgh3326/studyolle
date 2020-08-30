@@ -11,7 +11,10 @@ import me.khmoon.studyolle.domain.Zone;
 import me.khmoon.studyolle.settings.form.*;
 import me.khmoon.studyolle.settings.validator.NicknameValidator;
 import me.khmoon.studyolle.settings.validator.PasswordFormValidator;
+import me.khmoon.studyolle.tag.TagForm;
 import me.khmoon.studyolle.tag.TagRepository;
+import me.khmoon.studyolle.tag.TagService;
+import me.khmoon.studyolle.zone.ZoneForm;
 import me.khmoon.studyolle.zone.ZoneRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +50,7 @@ public class SettingsController {
   private final AccountService accountService;
   private final ModelMapper modelMapper;
   private final NicknameValidator nicknameValidator;
+  private final TagService tagService;
   private final TagRepository tagRepository;
   private final ZoneRepository zoneRepository;
   private final ObjectMapper objectMapper;
@@ -137,12 +141,7 @@ public class SettingsController {
   @PostMapping(TAGS + "/add")
   @ResponseBody
   public ResponseEntity addTag(@CurrentAccount Account account, @RequestBody TagForm tagForm) {
-    String title = tagForm.getTagTitle();
-    Tag tag = tagRepository.findByTitle(title);
-    if (tag == null) {
-      tag = tagRepository.save(Tag.builder().title(title).build());
-    }
-
+    Tag tag = tagService.findOrCreateNew(tagForm.getTagTitle());
     accountService.addTag(account, tag);
     return ResponseEntity.ok().build();
   }
