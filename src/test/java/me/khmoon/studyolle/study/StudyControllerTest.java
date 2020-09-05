@@ -27,18 +27,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class StudyControllerTest {
 
   @Autowired
-  MockMvc mockMvc;
+  protected MockMvc mockMvc;
   @Autowired
-  StudyService studyService;
+  protected StudyService studyService;
   @Autowired
-  StudyRepository studyRepository;
+  protected StudyRepository studyRepository;
   @Autowired
-  AccountRepository accountRepository;
-
-  @AfterEach
-  void afterEach() {
-    accountRepository.deleteAll();
-  }
+  protected AccountRepository accountRepository;
 
   @Test
   @WithAccount("keesun")
@@ -109,5 +104,51 @@ class StudyControllerTest {
             .andExpect(model().attributeExists("study"));
   }
 
+  @Test
+  @WithAccount("keesun")
+  @DisplayName("스터디 가입")
+  void joinStudy() throws Exception {
+    Account whiteship = createAccount("whiteship");
 
+    Study study = createStudy("test-study", whiteship);
+
+    mockMvc.perform(get("/study/" + study.getPath() + "/join"))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/study/" + study.getPath() + "/members"));
+
+    Account keesun = accountRepository.findByNickname("keesun");
+    assertTrue(study.getMembers().contains(keesun));
+  }
+
+  @Test
+  @WithAccount("keesun")
+  @DisplayName("스터디 탈퇴")
+  void leaveStudy() throws Exception {
+    Account whiteship = createAccount("whiteship");
+    Study study = createStudy("test-study", whiteship);
+
+    Account keesun = accountRepository.findByNickname("keesun");
+    studyService.addMember(study, keesun);
+
+    mockMvc.perform(get("/study/" + study.getPath() + "/leave"))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/study/" + study.getPath() + "/members"));
+
+    assertFalse(study.getMembers().contains(keesun));
+  }
+
+  protected Study createStudy(String path, Account manager) {
+    Study study = new Study();
+    study.setPath(path);
+    studyService.createNewStudy(study, manager);
+    return study;
+  }
+
+  protected Account createAccount(String nickname) {
+    Account whiteship = new Account();
+    whiteship.setNickname(nickname);
+    whiteship.setEmail(nickname + "@email.com");
+    accountRepository.save(whiteship);
+    return whiteship;
+  }
 }
