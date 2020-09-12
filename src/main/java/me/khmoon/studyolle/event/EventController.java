@@ -6,6 +6,7 @@ import me.khmoon.studyolle.domain.Account;
 import me.khmoon.studyolle.domain.Event;
 import me.khmoon.studyolle.domain.Study;
 import me.khmoon.studyolle.form.event.EventForm;
+import me.khmoon.studyolle.study.StudyRepository;
 import me.khmoon.studyolle.study.StudyService;
 import me.khmoon.studyolle.validator.event.EventValidator;
 import org.modelmapper.ModelMapper;
@@ -94,5 +95,35 @@ public class EventController {
     return "study/events";
   }
 
+  @GetMapping("/events/{id}/edit")
+  public String updateEventForm(@CurrentAccount Account account,
+                                @PathVariable String path, @PathVariable Long id, Model model) {
+    Study study = studyService.getStudyToUpdate(account, path);
+    Event event = eventRepository.findById(id).orElseThrow();
+    model.addAttribute(study);
+    model.addAttribute(account);
+    model.addAttribute(event);
+    model.addAttribute(modelMapper.map(event, EventForm.class));
+    return "event/update-form";
+  }
 
+  @PostMapping("/events/{id}/edit")
+  public String updateEventSubmit(@CurrentAccount Account account, @PathVariable String path,
+                                  @PathVariable Long id, @Valid EventForm eventForm, Errors errors,
+                                  Model model) {
+    Study study = studyService.getStudyToUpdate(account, path);
+    Event event = eventRepository.findById(id).orElseThrow();
+    eventForm.setEventType(event.getEventType());
+    eventValidator.validateUpdateForm(eventForm, event, errors);
+
+    if (errors.hasErrors()) {
+      model.addAttribute(account);
+      model.addAttribute(study);
+      model.addAttribute(event);
+      return "event/update-form";
+    }
+
+    eventService.updateEvent(event, eventForm);
+    return "redirect:/study/" + study.getEncodedPath() + "/events/" + event.getId();
+  }
 }
