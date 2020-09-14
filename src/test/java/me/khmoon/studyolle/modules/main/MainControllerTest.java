@@ -1,5 +1,6 @@
 package me.khmoon.studyolle.modules.main;
 
+import me.khmoon.studyolle.infra.AbstractContainerBaseTest;
 import me.khmoon.studyolle.infra.MockMvcTest;
 import me.khmoon.studyolle.modules.account.AccountRepository;
 import me.khmoon.studyolle.modules.account.AccountService;
@@ -19,12 +20,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@MockMvcTest
-class MainControllerTest {
 
-  @Autowired MockMvc mockMvc;
-  @Autowired AccountService accountService;
-  @Autowired AccountRepository accountRepository;
+@MockMvcTest
+class MainControllerTest extends AbstractContainerBaseTest {
+
+  @Autowired
+  MockMvc mockMvc;
+  @Autowired
+  AccountService accountService;
+  @Autowired
+  AccountRepository accountRepository;
 
   @BeforeEach
   void beforeEach() {

@@ -1,6 +1,7 @@
 package me.khmoon.studyolle.modules.account;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import me.khmoon.studyolle.infra.AbstractContainerBaseTest;
 import me.khmoon.studyolle.infra.MockMvcTest;
 import me.khmoon.studyolle.modules.tag.Tag;
 import me.khmoon.studyolle.modules.tag.TagForm;
@@ -25,15 +26,22 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @MockMvcTest
-class SettingsControllerTest {
+class SettingsControllerTest extends AbstractContainerBaseTest {
 
-  @Autowired MockMvc mockMvc;
-  @Autowired AccountRepository accountRepository;
-  @Autowired PasswordEncoder passwordEncoder;
-  @Autowired ObjectMapper objectMapper;
-  @Autowired TagRepository tagRepository;
-  @Autowired AccountService accountService;
-  @Autowired ZoneRepository zoneRepository;
+  @Autowired
+  MockMvc mockMvc;
+  @Autowired
+  AccountRepository accountRepository;
+  @Autowired
+  PasswordEncoder passwordEncoder;
+  @Autowired
+  ObjectMapper objectMapper;
+  @Autowired
+  TagRepository tagRepository;
+  @Autowired
+  AccountService accountService;
+  @Autowired
+  ZoneRepository zoneRepository;
 
   private Zone testZone = Zone.builder().city("test").localNameOfCity("테스트시").province("테스트주").build();
 

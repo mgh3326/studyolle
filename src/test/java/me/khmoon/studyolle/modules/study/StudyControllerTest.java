@@ -1,5 +1,6 @@
 package me.khmoon.studyolle.modules.study;
 
+import me.khmoon.studyolle.infra.AbstractContainerBaseTest;
 import me.khmoon.studyolle.infra.MockMvcTest;
 import me.khmoon.studyolle.modules.account.Account;
 import me.khmoon.studyolle.modules.account.AccountFactory;
@@ -18,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @MockMvcTest
-public class StudyControllerTest {
+public class StudyControllerTest extends AbstractContainerBaseTest {
 
   @Autowired
   MockMvc mockMvc;

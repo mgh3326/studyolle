@@ -1,6 +1,7 @@
 package me.khmoon.studyolle.modules.event;
 
 
+import me.khmoon.studyolle.infra.AbstractContainerBaseTest;
 import me.khmoon.studyolle.infra.MockMvcTest;
 import me.khmoon.studyolle.modules.account.Account;
 import me.khmoon.studyolle.modules.account.AccountFactory;
@@ -22,18 +23,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @MockMvcTest
-class EventControllerTest {
+class EventControllerTest extends AbstractContainerBaseTest {
 
-  @Autowired
-  MockMvc mockMvc;
-  @Autowired
-  StudyFactory studyFactory;
-  @Autowired
-  AccountFactory accountFactory;
+  @Autowired MockMvc mockMvc;
+  @Autowired StudyFactory studyFactory;
+  @Autowired AccountFactory accountFactory;
   @Autowired EventService eventService;
   @Autowired EnrollmentRepository enrollmentRepository;
-  @Autowired
-  AccountRepository accountRepository;
+  @Autowired AccountRepository accountRepository;
 
   @Test
   @DisplayName("선착순 모임에 참가 신청 - 자동 수락")

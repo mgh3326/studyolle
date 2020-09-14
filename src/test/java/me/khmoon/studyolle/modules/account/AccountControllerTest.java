@@ -1,5 +1,6 @@
 package me.khmoon.studyolle.modules.account;
 
+import me.khmoon.studyolle.infra.AbstractContainerBaseTest;
 import me.khmoon.studyolle.infra.MockMvcTest;
 import me.khmoon.studyolle.infra.mail.EmailMessage;
 import me.khmoon.studyolle.infra.mail.EmailService;
@@ -22,12 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @MockMvcTest
-class AccountControllerTest {
+class AccountControllerTest extends AbstractContainerBaseTest {
 
-  @Autowired
-  MockMvc mockMvc;
-  @Autowired
-  AccountRepository accountRepository;
+  @Autowired MockMvc mockMvc;
+  @Autowired AccountRepository accountRepository;
 
   @MockBean
   EmailService emailService;
