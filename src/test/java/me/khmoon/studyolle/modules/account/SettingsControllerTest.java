@@ -1,10 +1,11 @@
 package me.khmoon.studyolle.modules.account;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import me.khmoon.studyolle.infra.MockMvcTest;
 import me.khmoon.studyolle.modules.tag.Tag;
-import me.khmoon.studyolle.modules.zone.Zone;
 import me.khmoon.studyolle.modules.tag.TagForm;
 import me.khmoon.studyolle.modules.tag.TagRepository;
+import me.khmoon.studyolle.modules.zone.Zone;
 import me.khmoon.studyolle.modules.zone.ZoneForm;
 import me.khmoon.studyolle.modules.zone.ZoneRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -12,13 +13,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
-
-import javax.transaction.Transactional;
 
 import static me.khmoon.studyolle.modules.account.SettingsController.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,25 +24,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@Transactional
-@SpringBootTest
-@AutoConfigureMockMvc
+@MockMvcTest
 class SettingsControllerTest {
 
-  @Autowired
-  MockMvc mockMvc;
-  @Autowired
-  AccountRepository accountRepository;
-  @Autowired
-  PasswordEncoder passwordEncoder;
-  @Autowired
-  ObjectMapper objectMapper;
-  @Autowired
-  TagRepository tagRepository;
-  @Autowired
-  AccountService accountService;
-  @Autowired
-  ZoneRepository zoneRepository;
+  @Autowired MockMvc mockMvc;
+  @Autowired AccountRepository accountRepository;
+  @Autowired PasswordEncoder passwordEncoder;
+  @Autowired ObjectMapper objectMapper;
+  @Autowired TagRepository tagRepository;
+  @Autowired AccountService accountService;
+  @Autowired ZoneRepository zoneRepository;
 
   private Zone testZone = Zone.builder().city("test").localNameOfCity("테스트시").province("테스트주").build();
 

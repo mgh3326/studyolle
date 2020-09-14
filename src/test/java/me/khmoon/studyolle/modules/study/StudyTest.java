@@ -2,7 +2,6 @@ package me.khmoon.studyolle.modules.study;
 
 import me.khmoon.studyolle.modules.account.Account;
 import me.khmoon.studyolle.modules.account.UserAccount;
-import me.khmoon.studyolle.modules.study.Study;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
