@@ -3,10 +3,12 @@ package me.khmoon.studyolle.modules.study;
 
 import lombok.RequiredArgsConstructor;
 import me.khmoon.studyolle.modules.account.Account;
+import me.khmoon.studyolle.modules.study.event.StudyCreatedEvent;
 import me.khmoon.studyolle.modules.study.form.StudyDescriptionForm;
 import me.khmoon.studyolle.modules.tag.Tag;
 import me.khmoon.studyolle.modules.zone.Zone;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +22,12 @@ public class StudyService {
 
   private final StudyRepository repository;
   private final ModelMapper modelMapper;
+  private final ApplicationEventPublisher eventPublisher;
 
   public Study createNewStudy(Study study, Account account) {
     Study newStudy = repository.save(study);
     newStudy.addManager(account);
+    eventPublisher.publishEvent(new StudyCreatedEvent(newStudy));
     return newStudy;
   }
 
@@ -93,7 +97,7 @@ public class StudyService {
   }
 
   private void checkIfManager(Account account, Study study) {
-    if (!study.isManagerBy(account)) {
+    if (!study.isManagedBy(account)) {
       throw new AccessDeniedException("해당 기능을 사용할 수 없습니다.");
     }
   }
