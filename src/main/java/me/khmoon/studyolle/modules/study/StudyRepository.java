@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+
 @Transactional(readOnly = true)
 public interface StudyRepository extends JpaRepository<Study, Long> {
 
@@ -25,4 +26,7 @@ public interface StudyRepository extends JpaRepository<Study, Long> {
   Study findStudyWithMembersByPath(String path);
 
   Study findStudyOnlyByPath(String path);
+
+  @EntityGraph(value = "Study.withTagsAndZones", type = EntityGraph.EntityGraphType.FETCH)
+  Study findStudyWithTagsAndZonesById(Long id);
 }

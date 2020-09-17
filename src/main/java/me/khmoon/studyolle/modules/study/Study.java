@@ -28,17 +28,15 @@ import java.util.Set;
         @NamedAttributeNode("managers")})
 @NamedEntityGraph(name = "Study.withMembers", attributeNodes = {
         @NamedAttributeNode("members")})
+@NamedEntityGraph(name = "Study.withTagsAndZones", attributeNodes = {
+        @NamedAttributeNode("tags"),
+        @NamedAttributeNode("zones")})
 @Entity
-@Getter
-@Setter
-@EqualsAndHashCode(of = "id")
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter @Setter @EqualsAndHashCode(of = "id")
+@Builder @AllArgsConstructor @NoArgsConstructor
 public class Study {
 
-  @Id
-  @GeneratedValue
+  @Id @GeneratedValue
   private Long id;
 
   @ManyToMany
@@ -54,12 +52,10 @@ public class Study {
 
   private String shortDescription;
 
-  @Lob
-  @Basic(fetch = FetchType.EAGER)
+  @Lob @Basic(fetch = FetchType.EAGER)
   private String fullDescription;
 
-  @Lob
-  @Basic(fetch = FetchType.EAGER)
+  @Lob @Basic(fetch = FetchType.EAGER)
   private String image;
 
   @ManyToMany
@@ -163,10 +159,6 @@ public class Study {
 
   public String getEncodedPath() {
     return URLEncoder.encode(this.path, StandardCharsets.UTF_8);
-  }
-
-  public boolean isManagerBy(Account account) {
-    return this.getManagers().contains(account);
   }
 
   public boolean isManagedBy(Account account) {
