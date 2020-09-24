@@ -3,7 +3,6 @@ package me.khmoon.studyolle.modules.account;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import me.khmoon.studyolle.modules.account.CurrentAccount;
 import me.khmoon.studyolle.modules.account.form.NicknameForm;
 import me.khmoon.studyolle.modules.account.form.Notifications;
 import me.khmoon.studyolle.modules.account.form.PasswordForm;

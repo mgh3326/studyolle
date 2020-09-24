@@ -2,7 +2,6 @@ package me.khmoon.studyolle.modules.account;
 
 
 import lombok.*;
-import me.khmoon.studyolle.modules.study.Study;
 import me.khmoon.studyolle.modules.tag.Tag;
 import me.khmoon.studyolle.modules.zone.Zone;
 
