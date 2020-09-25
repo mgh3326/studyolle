@@ -6,8 +6,10 @@ import me.khmoon.studyolle.modules.study.Study;
 
 @Getter
 @RequiredArgsConstructor
-public class StudyCreatedEvent {
+public class StudyUpdateEvent {
 
   private final Study study;
+
+  private final String message;
 
 }
