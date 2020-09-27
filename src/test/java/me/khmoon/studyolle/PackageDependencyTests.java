@@ -15,16 +15,17 @@ public class PackageDependencyTests {
   private static final String ACCOUNT = "..modules.account..";
   private static final String TAG = "..modules.tag..";
   private static final String ZONE = "..modules.zone..";
+  private static final String MAIN = "..modules.main..";
 
   @ArchTest
-  ArchRule modulesPackageRule = classes().that().resideInAPackage("me.khmoon.studyolle.modules..")
+  ArchRule modulesPackageRule = classes().that().resideInAPackage("com.studyolle.modules..")
           .should().onlyBeAccessed().byClassesThat()
-          .resideInAnyPackage("me.khmoon.studyolle.modules..");
+          .resideInAnyPackage("com.studyolle.modules..");
 
   @ArchTest
-  ArchRule studyPackageRule = classes().that().resideInAPackage("..modules.study..")
+  ArchRule studyPackageRule = classes().that().resideInAPackage(STUDY)
           .should().onlyBeAccessed().byClassesThat()
-          .resideInAnyPackage(STUDY, EVENT);
+          .resideInAnyPackage(STUDY, EVENT, MAIN);
 
   @ArchTest
   ArchRule eventPackageRule = classes().that().resideInAPackage(EVENT)
@@ -35,6 +36,6 @@ public class PackageDependencyTests {
           .should().accessClassesThat().resideInAnyPackage(TAG, ZONE, ACCOUNT);
 
   @ArchTest
-  ArchRule cycleCheck = slices().matching("me.khmoon.studyolle.modules.(*)..")
+  ArchRule cycleCheck = slices().matching("com.studyolle.modules.(*)..")
           .should().beFreeOfCycles();
 }
