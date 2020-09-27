@@ -14,11 +14,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Getter @Setter @EqualsAndHashCode(of = "id")
-@Builder @AllArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Study {
 
-  @Id @GeneratedValue
+  @Id
+  @GeneratedValue
   private Long id;
 
   @ManyToMany
@@ -34,10 +39,12 @@ public class Study {
 
   private String shortDescription;
 
-  @Lob @Basic(fetch = FetchType.EAGER)
+  @Lob
+  @Basic(fetch = FetchType.EAGER)
   private String fullDescription;
 
-  @Lob @Basic(fetch = FetchType.EAGER)
+  @Lob
+  @Basic(fetch = FetchType.EAGER)
   private String image;
 
   @ManyToMany
@@ -59,6 +66,8 @@ public class Study {
   private boolean closed;
 
   private boolean useBanner;
+
+  private int memberCount;
 
   public void addManager(Account account) {
     this.managers.add(account);
@@ -133,10 +142,12 @@ public class Study {
 
   public void addMember(Account account) {
     this.getMembers().add(account);
+    this.memberCount++;
   }
 
   public void removeMember(Account account) {
     this.getMembers().remove(account);
+    this.memberCount--;
   }
 
   public String getEncodedPath() {
